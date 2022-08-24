@@ -1,0 +1,51 @@
+--Xoa nhan vien
+create proc [dbo].[SP_XoaNhanVien]
+@ID int
+as
+begin
+	delete NhanSu where ID = @ID
+end
+go
+
+--Them nhan vien
+create proc [dbo].[SP_ThemNhanVien]
+@HoTen nvarchar(50),
+@GioiTinh nchar(10),
+@NgaySinh date,
+@Email nvarchar(50),
+@DiaChi nvarchar(50),
+@Phone nvarchar(20)
+as
+begin
+	insert into NhanSu values (@HoTen, @GioiTinh, @NgaySinh, @Email, @DiaChi, @Phone)
+end
+go
+--Sua nhan vien
+create proc [dbo].[SP_SuaNhanVien]
+@ID int,
+@HoTen nvarchar(50),
+@GioiTinh nchar(10),
+@NgaySinh date,
+@Email nvarchar(50),
+@DiaChi nvarchar(50),
+@Phone nvarchar(20)
+as
+begin
+	update NhanSu set
+	HoTen = @HoTen,
+	GioiTinh = @GioiTinh,
+	NgaySinh = @NgaySinh,
+	Email = @Email,
+	DiaChi = @DiaChi,
+	Phone = @Phone
+	where ID = @ID
+end
+go
+--Lay DS nhan vien
+create proc [dbo].[SP_LayDSNS]
+as
+begin
+	select * from NhanSu
+end
+go
+
